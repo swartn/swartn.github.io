@@ -1,364 +1,469 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en">
 <head>
-    <title>NCS</title>
-    <!-- Using the latest rendering mode for IE -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
-<style type="text/css">
-
-/*some stuff for output/input prompts*/
-div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
-div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
-div.cell{width:100%;padding:5px 5px 5px 0;margin:0;outline:none}
-div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
-@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
-div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
-div.prompt:empty{padding-top:0;padding-bottom:0}
-div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;}
-div.inner_cell{width:90%;}
-div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;}
-div.input_prompt{color:navy;border-top:1px solid transparent;}
-div.output_wrapper{margin-top:5px;position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
-div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);-moz-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);}
-div.output_collapsed{margin:0px;padding:0px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
-div.out_prompt_overlay{height:100%;padding:0px 0.4em;position:absolute;border-radius:4px;}
-div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000000;-moz-box-shadow:inset 0 0 1px #000000;box-shadow:inset 0 0 1px #000000;background:rgba(240, 240, 240, 0.5);}
-div.output_prompt{color:darkred;}
-
-a.anchor-link:link{text-decoration:none;padding:0px 20px;visibility:hidden;}
-h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible;}
-/* end stuff for output/input prompts*/
-
-
-.highlight-ipynb .hll { background-color: #ffffcc }
-.highlight-ipynb  { background: #f8f8f8; }
-.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
-.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
-.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight-ipynb .o { color: #666666 } /* Operator */
-.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
-.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
-.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
-.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
-.highlight-ipynb .go { color: #888888 } /* Generic.Output */
-.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
-.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
-.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
-.highlight-ipynb .m { color: #666666 } /* Literal.Number */
-.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
-.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
-.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
-.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight-ipynb .no { color: #880000 } /* Name.Constant */
-.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
-.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
-.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
-.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
-.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
-.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
-.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
-.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
-.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
-</style>
-
-<style type="text/css">
-/* Overrides of notebook CSS for static HTML export */
-div.entry-content {
-  overflow: visible;
-  padding: 8px;
-}
-.input_area {
-  padding: 0.2em;
-}
-
-a.heading-anchor {
- white-space: normal;
-}
-
-.rendered_html
-code {
- font-size: .8em;
-}
-
-pre.ipynb {
-  color: black;
-  background: #f7f7f7;
-  border: none;
-  box-shadow: none;
-  margin-bottom: 0;
-  padding: 0;
-  margin: 0px;
-  font-size: 13px;
-}
-
-/* remove the prompt div from text cells */
-div.text_cell .prompt {
-    display: none;
-}
-
-/* remove horizontal padding from text cells, */
-/* so it aligns with outer body text */
-div.text_cell_render {
-    padding: 0.5em 0em;
-}
-
-img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
-</style>
-
-<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
-<script type="text/javascript">
-init_mathjax = function() {
-    if (window.MathJax) {
-        // MathJax loaded
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
-            },
-            displayAlign: 'left', // Change this to 'center' to center equations.
-            "HTML-CSS": {
-                styles: {'.MathJax_Display': {"margin": 0}}
-            }
-        });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-    }
-}
-init_mathjax();
-</script>
-
-<link rel="canonical" href=".">
-        <meta name="author" content="NCS" />
-
-    <!-- Enable latex plugin -->
-
-
-    <!-- Open Graph tags -->
-        <meta property="og:site_name" content="NCS" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="NCS"/>
-        <meta property="og:url" content="."/>
-        <meta property="og:description" content="NCS"/>
-
-
-    <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
-
-    <link href="./theme/css/pygments/manni.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
-
-
-
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neil C. Swart | Research Scientist</title>
+  <meta name="description" content="Neil C. Swart — Research Scientist at CCCma, Environment and Climate Change Canada. Climate modelling, ocean-atmosphere interactions, CanESM." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="nav-brand">Neil C. Swart</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-                <a href="./" class="navbar-brand">NCS</a>
-
-        </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-
-                        <li >
-                            <a href="./category/python-coding.html">Python & coding</a>
-                        </li>
-
-            </ul>
-
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <p class="navbar-text">
-                                <a class="navbar-link social-nav-link" href="http://twitter.com/Neil_C_Swart"><i class="fa fa-twitter fa-lg"></i></a>
-                                <a class="navbar-link social-nav-link" href="https://github.com/swartn"><i class="fa fa-github fa-lg"></i></a>
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="hero-photo-wrap">
+      <img src="profile.jpg" alt="Neil C. Swart" class="hero-photo" />
     </div>
-</div> <!-- /.navbar -->
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9">
-
-            <article>
-                <h2><a href="./exploring-canadian-temperature-station-data.html">Exploring Canadian temperature station data</a></h2>
-                <div class="summary"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="exploring-homogenized-canadian-monthly-mean-temperatures">Exploring homogenized Canadian monthly mean temperatures</h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This post serves the dual purpose of being a follow-on tutorial on using pandas to look at weather data, and also as an exploratory post on how appropriate the homogenized data might be for some of my projects.</p>
-<p>The background is that I've ...</p></div></div></div></p>
-                    <a class="btn btn-default btn-xs" href="./exploring-canadian-temperature-station-data.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="./weather-with-pandas.html">Weather with pandas</a></h2>
-                <div class="summary"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="weather-with-pandas">Weather with Pandas</h1>
-<h2 id="introduction">Introduction</h2>
-<p>This is a basic introduction to pandas using some Environment Canada weather station data. We will look at one year's worth of daily data from Victoria, BC and we'll cover three basic topics:</p>
-<ol style="list-style-type: decimal">
-<li>Loading and looking at data</li>
-<li>Basic filtering of data</li>
-<li>Basic plotting ...</li></ol></div></div></div></p>
-                    <a class="btn btn-default btn-xs" href="./weather-with-pandas.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-
+    <div class="hero-text">
+      <h1>Neil C. Swart</h1>
+      <p class="hero-title">Research Scientist &amp; Physical Scientist</p>
+      <p class="hero-affil">Canadian Centre for Climate Modelling and Analysis (CCCma)<br/>Environment and Climate Change Canada</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">42</span>
+          <span class="stat-label">Publications</span>
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
-
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
-    
-
-                <li class="list-group-item"><h4><i class="fa fa-clock-o fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
-                    <ul class="list-group" id="recentposts">
-                        <li class="list-group-item">
-                            <a href="./exploring-canadian-temperature-station-data.html">
-                                Exploring Canadian temperature station data
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="./weather-with-pandas.html">
-                                Weather with pandas
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="list-group-item"><a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
-                    <ul class="list-group list-inline tagcloud" id="tags">
-                        <li class="list-group-item tag-4">
-                            <a href="./tag/ec-station-data.html">
-                                EC station data
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="./tag/pandas.html">
-                                pandas
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="./tag/python.html">
-                                python
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="./tag/tutorial.html">
-                                tutorial
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
-                            <a href="./tag/weather.html">
-                                weather
-                            </a>
-                        </li>
-                    </ul>
-                </li>    
-
-        </ul>
-    </section>
-
-</aside>        </div>
-    </div>
-</div>
-<footer>
-   <div class="container">
-      <hr>
-      <div class="row">
-         <div class="col-xs-10">&copy; 2014 NCS
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
-            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
-    Content
-  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
-</small></p>
-         </div>
-         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+        <div class="stat">
+          <span class="stat-num">33</span>
+          <span class="stat-label">h-index</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">8,500+</span>
+          <span class="stat-label">Citations</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">73×</span>
+          <span class="stat-label">Cited in IPCC AR6</span>
+        </div>
       </div>
-   </div>
+      <div class="hero-links">
+        <a href="https://scholar.google.com/citations?user=scDlcSIAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="fas fa-graduation-cap"></i> Google Scholar
+        </a>
+        <a href="https://orcid.org/0000-0002-8200-6187" target="_blank" rel="noopener" class="btn btn-outline">
+          <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID" style="vertical-align:middle;margin-right:5px;" />ORCID
+        </a>
+        <a href="https://github.com/swartn" target="_blank" rel="noopener" class="btn btn-outline">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://gitlab.com/swartn" target="_blank" rel="noopener" class="btn btn-outline">
+          <i class="fab fa-gitlab"></i> GitLab
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="#about" class="scroll-down" aria-label="Scroll down">
+    <i class="fas fa-chevron-down"></i>
+  </a>
+</section>
+
+<!-- About / Research Statement -->
+<section id="about" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="lead">
+          I am a Research Scientist and Physical Scientist at the Canadian Centre for Climate Modelling and Analysis (CCCma), Environment and Climate Change Canada, based in Victoria, British Columbia.
+        </p>
+        <p>
+          My research focuses on understanding the physical mechanisms driving natural and anthropogenic changes in the climate system, with an emphasis on the Southern Ocean, sea ice, and global ocean circulation. I use and develop global climate models — particularly the Canadian Earth System Model (CanESM) — to investigate how greenhouse gas forcing, natural variability, and regional feedbacks shape the trajectory of climate change.
+        </p>
+        <p>
+          A central pillar of my work is advancing the scientific capabilities of CanESM, which underpins Canada's contributions to the Coupled Model Intercomparison Project (CMIP) and the Intergovernmental Panel on Climate Change (IPCC) assessment reports. I lead or co-lead multiple national and international climate science initiatives, and supervise students and postdoctoral fellows across Canadian universities.
+        </p>
+        <div class="about-positions">
+          <h3>Current Positions</h3>
+          <ul>
+            <li><strong>Research Scientist (RS-3)</strong> — CCCma, Environment and Climate Change Canada</li>
+            <li><strong>Physical Scientist (PC-04)</strong> — CCCma, Environment and Climate Change Canada</li>
+            <li><strong>Adjunct Professor</strong> — University of Victoria</li>
+          </ul>
+        </div>
+        <div class="about-education">
+          <h3>Education</h3>
+          <ul>
+            <li><strong>Ph.D. Oceanography</strong> — Dalhousie University, 2012</li>
+            <li><strong>B.Sc. (Hons) Physics &amp; Oceanography</strong> — University of Cape Town, 2004</li>
+          </ul>
+        </div>
+      </div>
+      <div class="about-sidebar">
+        <div class="award-card">
+          <i class="fas fa-award award-icon"></i>
+          <h4>Recognition</h4>
+          <ul>
+            <li>2023 Citation of Excellence for Innovation and Guiding Change — ECCC</li>
+            <li>2019 Geoff Howell Citation of Excellence — ECCC</li>
+            <li>CanESM5 cited 73 times in IPCC Sixth Assessment Report (AR6)</li>
+          </ul>
+        </div>
+        <div class="award-card">
+          <i class="fas fa-users award-icon"></i>
+          <h4>Supervision</h4>
+          <p>Supervising and co-supervising students and postdoctoral researchers at UVic, Dalhousie, McGill, U of T, Concordia, and other institutions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research Focus -->
+<section id="research" class="section section-dark">
+  <div class="container">
+    <h2 class="section-title">Research Focus</h2>
+    <p class="section-subtitle">Advancing our understanding of the climate system through modelling, observation, and analysis</p>
+    <div class="research-grid">
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-water"></i></div>
+        <h3>Southern Ocean &amp; Sea Ice</h3>
+        <p>Investigating the physical drivers of Southern Ocean warming, sea ice variability, and water mass transformation — including the role of wind forcing, freshwater fluxes, and stratification feedbacks in shaping the polar climate system.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-globe"></i></div>
+        <h3>Climate Modelling (CanESM)</h3>
+        <p>Leading the development of the Canadian Earth System Model (CanESM), Canada's primary tool for climate projection and CMIP participation. Responsible for model development, evaluation, and large-ensemble experiments used worldwide.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-wind"></i></div>
+        <h3>Ocean–Atmosphere Interactions</h3>
+        <p>Examining how ocean circulation, heat uptake, and carbon storage respond to changing atmospheric forcing, with a focus on attribution, detection, and the interplay between natural variability and anthropogenic trends.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-mountain"></i></div>
+        <h3>Carbon Cycle &amp; Earth System Feedbacks</h3>
+        <p>Studying the role of the ocean and terrestrial biosphere in the global carbon cycle, including methane, permafrost, and vegetation feedbacks, to constrain projections of future atmospheric CO₂ and global temperature.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Detection &amp; Attribution</h3>
+        <p>Developing and applying statistical frameworks to detect anthropogenic climate signals and attribute observed changes to specific forcing agents, informing both scientific understanding and policy-relevant climate assessments.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-code-branch"></i></div>
+        <h3>Open Science &amp; Research Software</h3>
+        <p>Committed to open, reproducible climate science. Developing Python-based analysis tools and workflows and contributing to community software and data standards that underpin modern climate research.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Major Projects -->
+<section id="projects" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Major Projects</h2>
+    <p class="section-subtitle">Leading and contributing to national and international climate research initiatives</p>
+    <div class="projects-list">
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">Climate Modelling</div>
+          <h3>CanESM — Canadian Earth System Model</h3>
+        </div>
+        <p>CanESM is Canada's flagship coupled climate model and the primary tool for generating climate projections for CMIP6 and IPCC reports. As a lead developer and scientist, I contribute to the physical ocean, sea-ice, and coupled model components. CanESM5 has been cited over 1,255 times and appeared 73 times in the IPCC Sixth Assessment Report — more than any other single modelling group's paper in AR6.</p>
+        <div class="project-links">
+          <a href="https://gitlab.com/cccma" target="_blank" rel="noopener"><i class="fab fa-gitlab"></i> CCCma GitLab</a>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">International Initiative</div>
+          <h3>SOFIA / SOFIAMIP — Southern Ocean Freshwater Input from Antarctica</h3>
+        </div>
+        <p>I am a co-founder and lead organizer of the Southern Ocean Freshwater Input from Antarctica (SOFIA) initiative and the associated SOFIAMIP model intercomparison project. This international effort, coordinated with leading Antarctic research groups worldwide, investigates how freshwater discharge from the Antarctic Ice Sheet influences Southern Ocean circulation, sea ice, and global climate — a critical but poorly constrained component of future climate change.</p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">National Initiative</div>
+          <h3>CP4C — Climate Prediction for Canada</h3>
+        </div>
+        <p>Climate Prediction for Canada (CP4C) is a multi-partner national initiative aimed at generating and delivering reliable decadal climate predictions and near-term projections for Canadian stakeholders. I contribute to the scientific leadership and model development underpinning CP4C's operational prediction framework.</p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">Data &amp; Analysis</div>
+          <h3>CanTODS — Canadian Trend and Observational Diagnostics Suite</h3>
+        </div>
+        <p>CanTODS is a Python-based software suite for systematic evaluation of climate model trends against observational datasets. It enables automated, reproducible model diagnostics that are used internally at CCCma and shared with the broader climate modelling community to support transparent, open-science model evaluation.</p>
+        <div class="project-links">
+          <a href="https://github.com/swartn" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">Large Ensemble</div>
+          <h3>CanESM Large Ensemble (CanESM-LE)</h3>
+        </div>
+        <p>I led the design and production of the CanESM2 and CanESM5 Large Ensembles — multi-member sets of climate simulations used worldwide to separate forced climate change signals from internal variability. These datasets have been foundational for climate attribution research and are widely used by the international research community.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Selected Publications -->
+<section id="publications" class="section section-dark">
+  <div class="container">
+    <h2 class="section-title">Selected Publications</h2>
+    <p class="section-subtitle">
+      Full list on
+      <a href="https://scholar.google.com/citations?user=scDlcSIAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--accent);">Google Scholar</a>
+      &nbsp;|&nbsp;
+      <a href="https://orcid.org/0000-0002-8200-6187" target="_blank" rel="noopener" style="color:var(--accent);">ORCID</a>
+    </p>
+
+    <div class="pub-list">
+
+      <div class="pub-item featured">
+        <div class="pub-badges">
+          <span class="pub-badge">1,255+ citations</span>
+          <span class="pub-badge accent">IPCC AR6 ×73</span>
+        </div>
+        <p class="pub-ref">
+          Swart, N.C., Cole, J.N.S., Kharin, V.V., Lazare, M., Scinocca, J.F., Gillett, N.P., Anstey, J., Arora, V., Christian, J.R., Hanna, S., et al. (2019).
+          <strong>The Canadian Earth System Model version 5 (CanESM5.0.3).</strong>
+          <em>Geoscientific Model Development</em>, 12, 4823–4873.
+          <a href="https://doi.org/10.5194/gmd-12-4823-2019" target="_blank" rel="noopener">doi:10.5194/gmd-12-4823-2019</a>
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., Gille, S.T., Fyfe, J.C., &amp; Gillett, N.P. (2018).
+          <strong>Recent Southern Ocean warming and freshening driven by greenhouse gas emissions and ozone depletion.</strong>
+          <em>Nature Geoscience</em>, 11, 836–841.
+          <a href="https://doi.org/10.1038/s41561-018-0226-1" target="_blank" rel="noopener">doi:10.1038/s41561-018-0226-1</a>
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., Fyfe, J.C., Gillett, N., &amp; Marshall, G.J. (2015).
+          <strong>Comparing trends in the Southern Annular Mode and surface westerly jet.</strong>
+          <em>Journal of Climate</em>, 28(22), 8840–8859.
+          <a href="https://doi.org/10.1175/JCLI-D-15-0334.1" target="_blank" rel="noopener">doi:10.1175/JCLI-D-15-0334.1</a>
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., &amp; Fyfe, J.C. (2012).
+          <strong>Observed and simulated changes in the Southern Hemisphere surface westerly wind-stress.</strong>
+          <em>Geophysical Research Letters</em>, 39(16).
+          <a href="https://doi.org/10.1029/2012GL052810" target="_blank" rel="noopener">doi:10.1029/2012GL052810</a>
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., Fyfe, J.C., Hawkins, E., Kay, J.E., &amp; Jahn, A. (2015).
+          <strong>Influence of internal variability on Arctic sea-ice trends.</strong>
+          <em>Nature Climate Change</em>, 5, 86–89.
+          <a href="https://doi.org/10.1038/nclimate2483" target="_blank" rel="noopener">doi:10.1038/nclimate2483</a>
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., et al. (2020).
+          <strong>Uncertainty in climate change projections: The role of internal variability.</strong>
+          <em>Nature Climate Change</em>.
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Rathore, S., Bindoff, N.L., Ummenhofer, C.C., England, M.H., &amp; Swart, N.C. (2020).
+          <strong>Near-surface salinity reveals the oceanic sources of moisture for Australian precipitation.</strong>
+          <em>Journal of Climate</em>, 33(18), 7707–7726.
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Kharin, V.V., Swart, N., &amp; Cole, J. (2023).
+          <strong>Influence of model drift on climate projections.</strong>
+          <em>Geophysical Research Letters</em>.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="pub-cta">
+      <a href="https://scholar.google.com/citations?user=scDlcSIAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-primary">
+        <i class="fas fa-graduation-cap"></i> View All Publications
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Impact & Recognition -->
+<section id="impact" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Impact &amp; Recognition</h2>
+
+    <div class="impact-metrics">
+      <div class="metric-card">
+        <div class="metric-num">8,500+</div>
+        <div class="metric-label">Total Citations</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">h = 33</div>
+        <div class="metric-label">h-index</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">i10 = 46</div>
+        <div class="metric-label">i10-index</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">42</div>
+        <div class="metric-label">Peer-reviewed Publications</div>
+      </div>
+    </div>
+
+    <div class="impact-grid">
+
+      <div class="impact-block">
+        <h3><i class="fas fa-globe-americas"></i> IPCC Contribution</h3>
+        <p>The CanESM5 model paper (Swart et al., 2019) was cited <strong>73 times in the IPCC Sixth Assessment Report (AR6)</strong> — among the highest citations of any single modelling paper in the report. CanESM simulations were used to generate core results in multiple AR6 working group chapters.</p>
+      </div>
+
+      <div class="impact-block">
+        <h3><i class="fas fa-award"></i> Awards</h3>
+        <ul class="award-list">
+          <li>
+            <strong>2023 — Citation of Excellence for Innovation and Guiding Change</strong><br/>
+            Environment and Climate Change Canada — for leadership in developing CanTODS and advancing model evaluation methodology.
+          </li>
+          <li>
+            <strong>2019 — Geoff Howell Citation of Excellence</strong><br/>
+            Environment and Climate Change Canada — for outstanding scientific contributions to climate modelling and research.
+          </li>
+        </ul>
+      </div>
+
+      <div class="impact-block">
+        <h3><i class="fas fa-users"></i> Community Service</h3>
+        <ul>
+          <li>Associate Editor, <em>Journal of Climate</em></li>
+          <li>Associate Editor, <em>Geophysical Research Letters</em></li>
+          <li>Reviewer for <em>Nature, Science, Nature Climate Change, Nature Geoscience</em>, and 20+ leading journals</li>
+          <li>Reviewer for NSERC, NSF, and international funding agencies</li>
+          <li>Lead organizer: SOFIA/SOFIAMIP international initiative</li>
+          <li>Session convener and invited speaker at AGU, EGU, and other major conferences</li>
+        </ul>
+      </div>
+
+      <div class="impact-block">
+        <h3><i class="fas fa-chalkboard-teacher"></i> Training &amp; Supervision</h3>
+        <p>Supervising or co-supervising graduate students and postdoctoral fellows at the University of Victoria, Dalhousie University, McGill University, University of Toronto, Concordia University, and other institutions across Canada and internationally.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section section-hero">
+  <div class="container contact-container">
+    <h2 class="section-title light">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="contact-lead">I welcome inquiries from prospective graduate students, postdoctoral researchers, and collaborators in climate science.</p>
+        <ul class="contact-list">
+          <li>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:neil.swart@ec.gc.ca">neil.swart@ec.gc.ca</a>
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            Canadian Centre for Climate Modelling and Analysis (CCCma)<br/>
+            Environment and Climate Change Canada<br/>
+            Victoria, British Columbia, Canada
+          </li>
+        </ul>
+        <div class="contact-links">
+          <a href="https://scholar.google.com/citations?user=scDlcSIAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar">
+            <i class="fas fa-graduation-cap fa-2x"></i>
+          </a>
+          <a href="https://orcid.org/0000-0002-8200-6187" target="_blank" rel="noopener" title="ORCID">
+            <i class="fab fa-orcid fa-2x"></i>
+          </a>
+          <a href="https://github.com/swartn" target="_blank" rel="noopener" title="GitHub">
+            <i class="fab fa-github fa-2x"></i>
+          </a>
+          <a href="https://gitlab.com/swartn" target="_blank" rel="noopener" title="GitLab">
+            <i class="fab fa-gitlab fa-2x"></i>
+          </a>
+          <a href="https://gitlab.com/cccma" target="_blank" rel="noopener" title="CCCma GitLab">
+            <i class="fas fa-code fa-2x"></i>
+          </a>
+        </div>
+      </div>
+      <div class="contact-ids">
+        <div class="id-card">
+          <div class="id-label">ORCID</div>
+          <div class="id-value">0000-0002-8200-6187</div>
+        </div>
+        <div class="id-card">
+          <div class="id-label">Google Scholar</div>
+          <div class="id-value">scDlcSIAAAAJ</div>
+        </div>
+        <div class="id-card">
+          <div class="id-label">GitHub</div>
+          <div class="id-value">@swartn</div>
+        </div>
+        <div class="id-card">
+          <div class="id-label">GitLab</div>
+          <div class="id-value">@swartn / @cccma</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 Neil C. Swart &mdash; Research Scientist, CCCma, Environment and Climate Change Canada</p>
+    <p style="margin-top:0.3rem;font-size:0.8rem;opacity:0.6;">Victoria, British Columbia, Canada</p>
+  </div>
 </footer>
-<script src="./theme/js/jquery.min.js"></script>
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme/js/bootstrap.min.js"></script>
-
-<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme/js/respond.min.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
