@@ -1,11 +1,12 @@
-// Spam-safe email reveal
+// Spam-safe email reveal (address stored as char codes, never as plaintext)
 (function() {
-  var u = 'neil.swart', d = 'ec.gc.ca';
+  var codes = [110,101,105,108,46,115,119,97,114,116,64,101,99,46,103,99,46,99,97];
+  var addr = codes.map(function(c){ return String.fromCharCode(c); }).join('');
   var el = document.getElementById('email-link');
   if (el) {
     var a = document.createElement('a');
-    a.href = 'mailto:' + u + '@' + d;
-    a.textContent = u + '@' + d;
+    a.href = 'mailto:' + addr;
+    a.textContent = addr;
     el.appendChild(a);
   }
 })();
