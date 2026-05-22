@@ -1,3 +1,15 @@
+// Spam-safe email reveal
+(function() {
+  var u = 'neil.swart', d = 'ec.gc.ca';
+  var el = document.getElementById('email-link');
+  if (el) {
+    var a = document.createElement('a');
+    a.href = 'mailto:' + u + '@' + d;
+    a.textContent = u + '@' + d;
+    el.appendChild(a);
+  }
+})();
+
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
