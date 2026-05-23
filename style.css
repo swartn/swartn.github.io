@@ -364,6 +364,12 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
   flex: 1;
 }
+.research-card li {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.6;
+}
 .research-papers {
   margin-top: 0.85rem;
   padding-top: 0.75rem;
