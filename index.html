@@ -1,5 +1,3 @@
----
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +42,7 @@
       <h1>Neil C. Swart</h1>
       <p class="hero-title">Research Scientist</p>
       <p class="hero-affil">Canadian Centre for Climate Modelling and Analysis (CCCma)<br/>Environment and Climate Change Canada</p>
-      <p class="hero-tagline">{{ site.data.about.hero.tagline }}</p>
+      <p class="hero-tagline">Examining global climate change and variability with Earth System Models and observations — from the Southern Ocean to Arctic sea ice to the global carbon cycle. Lead developer of Canada's Earth System Model (CanESM) and its contributions to CMIP.</p>
       <div class="hero-links">
         <a href="https://scholar.google.com/citations?user=scDlcSIAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-primary">
           <i class="fas fa-graduation-cap"></i> Google Scholar
@@ -66,51 +64,53 @@
   </a>
 </section>
 
-<!-- About -->
+<!-- About / Research Statement -->
 <section id="about" class="section section-light">
   <div class="container">
     <h2 class="section-title">About</h2>
     <div class="about-grid">
       <div class="about-text">
-        {% for para in site.data.about.intro %}
-        <p{% if forloop.first %} class="lead"{% endif %}>{{ para }}</p>
-        {% endfor %}
-
+        <p class="lead">
+          I am a Research Scientist at the Canadian Centre for Climate Modelling and Analysis (CCCma), Environment and Climate Change Canada, based in Victoria, British Columbia.
+        </p>
+        <p>
+          I examine global climate change and variability using Earth System Models and observations. My particular areas of focus have been model development, evaluation and uncertainty, the Southern Ocean in the climate system, the role of the ocean in the global carbon cycle, sea-ice change and variability in both the Arctic and Antarctic, and climate stabilization.
+        </p>
+        <p>
+          I coordinate development of the Canadian Earth System Model (CanESM), and its application in the Coupled Model Intercomparison Project, providing experience in managing large teams and projects.
+        </p>
         <div class="about-positions">
           <h3>Current Positions</h3>
           <ul>
-            {% for pos in site.data.about.positions %}
-            <li><strong>{{ pos.title }}</strong> — {{ pos.org }} ({{ pos.years }})</li>
-            {% endfor %}
+            <li><strong>Research Scientist (RES-04)</strong> — CCCma, Environment and Climate Change Canada (2013–present)</li>
+            <li><strong>Adjunct Assistant Professor</strong> — School of Earth and Ocean Sciences, University of Victoria (2014–present)</li>
+            <li><strong>Subject Editor for Climate</strong> — FACETS (2015–2024)</li>
           </ul>
         </div>
-
         <div class="about-education">
           <h3>Education</h3>
           <ul>
-            {% for ed in site.data.about.education %}
-            <li>
-              <strong>{{ ed.degree }}</strong> — {{ ed.institution }}, {{ ed.year }}{% if ed.note %} ({{ ed.note }}){% endif %}
-            </li>
-            {% endfor %}
+            <li><strong>Ph.D.</strong> — School of Earth and Ocean Sciences, University of Victoria, 2013</li>
+            <li><strong>M.Sc. Oceanography</strong> — University of Cape Town, 2008</li>
+            <li><strong>B.Sc. (Hons) Physical Oceanography</strong> — University of Cape Town, 2005 (with Distinction)</li>
+            <li><strong>B.Sc.</strong> — University of Cape Town, 2004 (with Distinction)</li>
           </ul>
         </div>
       </div>
-
       <div class="about-sidebar">
         <div class="award-card">
           <i class="fas fa-award award-icon"></i>
           <h4>Recognition</h4>
           <ul>
-            {% for item in site.data.about.recognition %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            <li>2023 Citation of Excellence for Innovation and Guiding Change — ECCC</li>
+            <li>2019 Geoff Howell Citation of Excellence — ECCC</li>
+            <li>CanESM5 referenced 73 times in IPCC Sixth Assessment Report (AR6)</li>
           </ul>
         </div>
         <div class="award-card">
           <i class="fas fa-users award-icon"></i>
           <h4>Training</h4>
-          <p>{{ site.data.about.training }}</p>
+          <p>As CanESM team lead, managing scientists and technical staff including work planning and career development. Co-supervising graduate students and serving on PhD committees at UVic.</p>
         </div>
       </div>
     </div>
@@ -123,26 +123,67 @@
     <h2 class="section-title">Research Focus</h2>
     <p class="section-subtitle">Scientific questions I work on — using Earth System Models and observations</p>
     <div class="research-grid">
-      {% for card in site.data.research %}
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-water"></i></div>
+        <h3>Southern Ocean &amp; Sea Ice</h3>
+        <p>Investigating the physical drivers of Southern Ocean warming, sea ice variability, and water mass transformation — including the role of wind forcing, freshwater fluxes, and ozone depletion.</p>
+        <div class="research-papers">
+          <a href="https://doi.org/10.1038/s41561-018-0226-1" target="_blank" rel="noopener">Swart et al. 2018</a> ·
+          <a href="https://doi.org/10.1002/grl.50820" target="_blank" rel="noopener">Swart &amp; Fyfe 2013</a> ·
+          <a href="https://doi.org/10.1029/2023GL106492" target="_blank" rel="noopener">Chen et al. 2023</a> ·
+          <a href="https://doi.org/10.1038/s41558-022-01320-w" target="_blank" rel="noopener">Liu et al. 2022</a>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-wind"></i></div>
+        <h3>Ocean–Atmosphere Interactions</h3>
+        <p>Examining how changes in surface winds drive ocean circulation, heat uptake, and exchanges of carbon between the atmosphere and ocean, and how these link to observed climate trends.</p>
+        <div class="research-papers">
+          <a href="https://doi.org/10.1175/JCLI-D-15-0334.1" target="_blank" rel="noopener">Swart et al. 2015</a> ·
+          <a href="https://doi.org/10.1029/2012GL052810" target="_blank" rel="noopener">Swart &amp; Fyfe 2012</a> ·
+          <a href="https://doi.org/10.1007/s00382-016-2988-1" target="_blank" rel="noopener">Saenko et al. 2016</a>
+        </div>
+      </div>
+
       <div class="research-card">
         <div class="research-icon">
-          {% if card.icon == "co2" %}
-            {% include co2_icon.html %}
-          {% else %}
-            <i class="{{ card.icon }}"></i>
-          {% endif %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 32" width="88" height="32" fill="none" aria-label="CO2 molecule">
+            <circle cx="10" cy="16" r="9" stroke="currentColor" stroke-width="2"/>
+            <text x="10" y="20.5" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="currentColor">O</text>
+            <line x1="19" y1="12.5" x2="30" y2="12.5" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="19" y1="19.5" x2="30" y2="19.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="40" cy="16" r="9" stroke="currentColor" stroke-width="2"/>
+            <text x="40" y="20.5" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="currentColor">C</text>
+            <line x1="49" y1="12.5" x2="60" y2="12.5" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="49" y1="19.5" x2="60" y2="19.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="70" cy="16" r="9" stroke="currentColor" stroke-width="2"/>
+            <text x="70" y="20.5" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="currentColor">O</text>
+          </svg>
         </div>
-        <h3>{{ card.title }}</h3>
-        <p>{{ card.description }}</p>
-        {% if card.papers %}
+        <h3>Ocean Carbon Cycle</h3>
+        <p>Studying the role of the ocean in the global carbon cycle — how wind-driven circulation, biological productivity, and model biases affect ocean carbon uptake and storage.</p>
         <div class="research-papers">
-          {% for paper in card.papers %}
-          <a href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.label }}</a>{% unless forloop.last %} · {% endunless %}
-          {% endfor %}
+          <a href="https://doi.org/10.1038/NCLIMATE1289" target="_blank" rel="noopener">Swart &amp; Fyfe 2012</a> ·
+          <a href="https://doi.org/10.5194/bg-11-6107-2014" target="_blank" rel="noopener">Swart et al. 2014</a> ·
+          <a href="https://doi.org/10.1029/2023EF004204" target="_blank" rel="noopener">Gooya et al. 2024</a> ·
+          <a href="https://doi.org/10.1029/2024JC021134" target="_blank" rel="noopener">Duke et al. 2024</a> ·
+          <a href="https://doi.org/10.5194/egusphere-2023-870" target="_blank" rel="noopener">Duke et al. 2023</a>
         </div>
-        {% endif %}
       </div>
-      {% endfor %}
+
+      <div class="research-card">
+        <div class="research-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Detection &amp; Attribution</h3>
+        <p>Detecting anthropogenic climate signals and attributing observed changes to specific forcing agents — including the role of internal variability in masking or amplifying trends in sea ice and global temperature.</p>
+        <div class="research-papers">
+          <a href="https://doi.org/10.1038/nclimate2483" target="_blank" rel="noopener">Swart et al. 2015</a> ·
+          <a href="https://doi.org/10.1038/nclimate2938" target="_blank" rel="noopener">Fyfe et al. 2016</a> ·
+          <a href="https://doi.org/10.1126/sciadv.abf7133" target="_blank" rel="noopener">Fyfe et al. 2021</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -153,26 +194,58 @@
     <h2 class="section-title">Major Projects</h2>
     <p class="section-subtitle">Named initiatives, models, and tools I lead or co-lead</p>
     <div class="projects-list">
-      {% for project in site.data.projects %}
+
       <div class="project-item">
         <div class="project-header">
-          <div class="project-tag">{{ project.tag }}</div>
-          <h3>{{ project.title }}</h3>
+          <div class="project-tag">Earth System Model</div>
+          <h3>CanESM — Canadian Earth System Model</h3>
         </div>
-        <p>{{ project.description }}</p>
-        {% if project.links %}
+        <p>I coordinate development of the Canadian Earth System Model (CanESM), and its application in the Coupled Model Intercomparison Project (CMIP). As team lead of the CanESM development team I manage a team of scientists and technical staff, including work planning, career development and administrative management.</p>
         <div class="project-links">
-          {% for link in project.links %}
-          {% if link.doi %}
-          <a href="https://doi.org/{{ link.doi }}" target="_blank" rel="noopener"><i class="{{ link.icon }}"></i> {{ link.label }}</a>
-          {% else %}
-          <a href="{{ link.url }}" target="_blank" rel="noopener"><i class="{{ link.icon }}"></i> {{ link.label }}</a>
-          {% endif %}
-          {% endfor %}
+          <a href="https://doi.org/10.5194/gmd-12-4823-2019" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> Swart et al. 2019</a>
+          <a href="https://doi.org/10.5194/gmd-16-6553-2023" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> Sigmond et al. 2023</a>
+          <a href="https://gitlab.com/cccma" target="_blank" rel="noopener"><i class="fab fa-gitlab"></i> CCCma GitLab</a>
         </div>
-        {% endif %}
       </div>
-      {% endfor %}
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">International Initiative</div>
+          <h3>SOFIA — Southern Ocean Freshwater Input from Antarctica</h3>
+        </div>
+        <p>The Southern Ocean Freshwater Input from Antarctica (SOFIA) Initiative is an international model intercomparison project concerned with the scientific objectives and experimental design needed to understand the effects of Antarctic meltwater on the Southern Ocean and global climate system.</p>
+        <div class="project-links">
+          <a href="https://doi.org/10.5194/gmd-16-7289-2023" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> Swart et al. 2023</a>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">National Initiative</div>
+          <h3>CP4C — Climate Prediction for Canada</h3>
+        </div>
+        <p>Climate Prediction for Canada (CP4C) is a national initiative to develop and deliver climate predictions on seasonal to decadal timescales for Canada, underpinned by CanESM model development and large ensemble simulations.</p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">Model Evaluation</div>
+          <h3>CanTODS — Canadian Trend and Observational Diagnostics Suite</h3>
+        </div>
+        <p>CanTODS is a software suite for the systematic evaluation of climate model trends against observations, developed to support transparent and reproducible assessment of CanESM and other CMIP models.</p>
+        <div class="project-links">
+          <a href="https://github.com/swartn" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <div class="project-tag">Large Ensemble</div>
+          <h3>CanESM Large Ensemble</h3>
+        </div>
+        <p>Large initial-condition ensembles of CanESM2 and CanESM5 simulations used to separate the forced climate change signal from internal variability, and widely applied in detection and attribution research and climate projection studies.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -187,23 +260,62 @@
       &nbsp;|&nbsp;
       <a href="https://orcid.org/0000-0002-8200-6187" target="_blank" rel="noopener" style="color:var(--accent);">ORCID</a>
     </p>
+
     <div class="pub-list">
-      {% for pub in site.data.publications %}
-      <div class="pub-item{% if pub.featured %} featured{% endif %}">
-        {% if pub.badge %}
+
+      <div class="pub-item featured">
         <div class="pub-badges">
-          <span class="pub-badge accent">{{ pub.badge }}</span>
+          <span class="pub-badge accent">IPCC AR6 ×73</span>
         </div>
-        {% endif %}
         <p class="pub-ref">
-          {{ pub.authors }}: <strong>{{ pub.title }}</strong>,
-          <em>{{ pub.journal }}</em>, {{ pub.details }}{% if pub.doi %},
-          <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">https://doi.org/{{ pub.doi }}</a>{% endif %},
-          {{ pub.year }}.
+          Swart, N. C., Cole, J. N. S., Kharin, V. V., Lazare, M., Scinocca, J. F., Gillett, N. P., Anstey, J., Arora, V., Christian, J. R., Hanna, S., Jiao, Y., Lee, W. G., Majaess, F., Saenko, O. A., Seiler, C., Seinen, C., Shao, A., Sigmond, M., Solheim, L., von Salzen, K., Yang, D., and Winter, B.: The Canadian Earth System Model version 5 (CanESM5.0.3), <em>Geosci. Model Dev.</em>, 12, 4823–4873, <a href="https://doi.org/10.5194/gmd-12-4823-2019" target="_blank" rel="noopener">https://doi.org/10.5194/gmd-12-4823-2019</a>, 2019.
         </p>
       </div>
-      {% endfor %}
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N. C., Martin, T., Beadling, R., Chen, J.-J., Danek, C., England, M. H., Farneti, R., Griffies, S. M., Hattermann, T., Hauck, J., Haumann, F. A., Jüling, A., Li, Q., Marshall, J., Muilwijk, M., Pauling, A. G., Purich, A., Smith, I. J., and Thomas, M.: The Southern Ocean Freshwater Input from Antarctica (SOFIA) Initiative: scientific objectives and experimental design, <em>Geosci. Model Dev.</em>, 16, 7289–7309, <a href="https://doi.org/10.5194/gmd-16-7289-2023" target="_blank" rel="noopener">https://doi.org/10.5194/gmd-16-7289-2023</a>, 2023.
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., Gille, S.T., Fyfe, J.C. &amp; Gillett, N. Drivers of Southern Ocean warming and freshening. <em>Nature Geosci</em> 11, 836–841 (2018). <a href="https://doi.org/10.1038/s41561-018-0226-1" target="_blank" rel="noopener">https://doi.org/10.1038/s41561-018-0226-1</a>
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., J.C. Fyfe, E. Hawkins, J.E. Kay and A. Jahn (2015), Influence of internal variability on Arctic sea-ice trends, <em>Nature Clim. Change</em>, 5, 86. <a href="https://doi.org/10.1038/nclimate2483" target="_blank" rel="noopener">https://doi.org/10.1038/nclimate2483</a>
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C., J.C. Fyfe, N.P. Gillett and G.J. Marshall (2015), Comparing trends in the Southern Annular Mode and the surface westerly jet, <em>J. Clim.</em>, 28, 8840–8859.
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C. and Fyfe, J.C. (2012) Global climate model wind bias influences ocean carbon uptake and storage, <em>Nature Clim. Change</em>, 2, 47–52, <a href="https://doi.org/10.1038/NCLIMATE1289" target="_blank" rel="noopener">doi:10.1038/NCLIMATE1289</a>.
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C. and Fyfe, J.C. (2012) Observed and simulated changes in the Southern Hemisphere surface westerly wind-stress, <em>Geophys. Res. Lett.</em>, 39, L16711, <a href="https://doi.org/10.1029/2012GL052810" target="_blank" rel="noopener">doi:10.1029/2012GL052810</a>.
+        </p>
+      </div>
+
+      <div class="pub-item">
+        <p class="pub-ref">
+          Swart, N.C. and Weaver, A.J. (2012) The Alberta oil-sands and climate, <em>Nature Clim. Change</em>, 2, 134–136, <a href="https://doi.org/10.1038/nclimate1421" target="_blank" rel="noopener">doi:10.1038/nclimate1421</a>.
+        </p>
+      </div>
+
     </div>
+
     <div class="pub-cta">
       <a href="https://scholar.google.com/citations?user=scDlcSIAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-primary">
         <i class="fas fa-graduation-cap"></i> View All Publications
@@ -218,45 +330,56 @@
     <h2 class="section-title">Impact &amp; Recognition</h2>
 
     <div class="impact-metrics">
-      {% for m in site.data.impact.metrics %}
       <div class="metric-card">
-        <div class="metric-num">{{ m.value }}</div>
-        <div class="metric-label">{{ m.label }}</div>
+        <div class="metric-num">h = 33</div>
+        <div class="metric-label">h-index</div>
       </div>
-      {% endfor %}
+      <div class="metric-card">
+        <div class="metric-num">i10 = 46</div>
+        <div class="metric-label">i10-index</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">42</div>
+        <div class="metric-label">Peer-reviewed Publications</div>
+      </div>
     </div>
 
     <div class="impact-grid">
 
       <div class="impact-block">
         <h3><i class="fas fa-globe-americas"></i> IPCC Contribution</h3>
-        <p>{{ site.data.impact.ipcc }}</p>
+        <p>The CanESM5 model paper (Swart et al., 2019) is referenced <strong>73 times in the IPCC Sixth Assessment Report (AR6)</strong>. CanESM simulations contributed to multiple AR6 working group chapters.</p>
       </div>
 
       <div class="impact-block">
         <h3><i class="fas fa-award"></i> Awards</h3>
         <ul class="award-list">
-          {% for award in site.data.impact.awards %}
           <li>
-            <strong>{{ award.year }} — {{ award.title }}</strong><br/>
-            {{ award.org }}
+            <strong>2023 — Citation of Excellence for Innovation and Guiding Change</strong><br/>
+            Environment and Climate Change Canada
           </li>
-          {% endfor %}
+          <li>
+            <strong>2019 — Geoff Howell Citation of Excellence</strong><br/>
+            Environment and Climate Change Canada
+          </li>
         </ul>
       </div>
 
       <div class="impact-block">
         <h3><i class="fas fa-users"></i> Community Service</h3>
         <ul>
-          {% for item in site.data.impact.service %}
-          <li>{{ item }}</li>
-          {% endfor %}
+          <li>Subject Editor for Climate, <em>FACETS</em> (2015–2024)</li>
+          <li>CLIVAR/CliC/SCAR Southern Ocean Regional Panel (SORP), 2019–2023</li>
+          <li>Contributing Author, IPCC AR5 Working Group I, Chapter 4, 2013</li>
+          <li>Contributing Author, WMO/UNEP Ozone Assessment, Chapter 4 (2014) and Chapter 5 (2018)</li>
+          <li>Author, Canada's Changing Climate Report, Chapter 2, 2019</li>
+          <li>Lead, Southern Ocean Freshwater Input from Antarctica (SOFIA) Initiative</li>
         </ul>
       </div>
 
       <div class="impact-block">
         <h3><i class="fas fa-chalkboard-teacher"></i> Training</h3>
-        <p>{{ site.data.impact.training }}</p>
+        <p>Team lead of the CanESM development group at CCCma, managing scientists and technical staff. Co-supervising graduate students and serving on PhD committees at the University of Victoria. Supervised ten co-op student projects (2013–2023).</p>
       </div>
 
     </div>
