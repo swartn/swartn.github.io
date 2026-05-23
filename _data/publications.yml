@@ -1,0 +1,63 @@
+# -------------------------------------------------------
+# Selected Publications
+# Fields: authors, title, journal, details (volume/pages), year, doi
+# featured: true   — highlights the entry with a gold border
+# badge: "text"    — optional badge shown on featured entries
+# -------------------------------------------------------
+
+- authors: "Swart, N. C., Cole, J. N. S., Kharin, V. V., Lazare, M., Scinocca, J. F., Gillett, N. P., Anstey, J., Arora, V., Christian, J. R., Hanna, S., Jiao, Y., Lee, W. G., Majaess, F., Saenko, O. A., Seiler, C., Seinen, C., Shao, A., Sigmond, M., Solheim, L., von Salzen, K., Yang, D., and Winter, B."
+  title: "The Canadian Earth System Model version 5 (CanESM5.0.3)"
+  journal: "Geosci. Model Dev."
+  details: "12, 4823–4873"
+  year: 2019
+  doi: "10.5194/gmd-12-4823-2019"
+  featured: true
+  badge: "IPCC AR6 ×73"
+
+- authors: "Swart, N. C., Martin, T., Beadling, R., Chen, J.-J., Danek, C., England, M. H., Farneti, R., Griffies, S. M., Hattermann, T., Hauck, J., Haumann, F. A., Jüling, A., Li, Q., Marshall, J., Muilwijk, M., Pauling, A. G., Purich, A., Smith, I. J., and Thomas, M."
+  title: "The Southern Ocean Freshwater Input from Antarctica (SOFIA) Initiative: scientific objectives and experimental design"
+  journal: "Geosci. Model Dev."
+  details: "16, 7289–7309"
+  year: 2023
+  doi: "10.5194/gmd-16-7289-2023"
+
+- authors: "Swart, N.C., Gille, S.T., Fyfe, J.C. & Gillett, N."
+  title: "Drivers of Southern Ocean warming and freshening"
+  journal: "Nature Geosci"
+  details: "11, 836–841"
+  year: 2018
+  doi: "10.1038/s41561-018-0226-1"
+
+- authors: "Swart, N.C., J.C. Fyfe, E. Hawkins, J.E. Kay and A. Jahn"
+  title: "Influence of internal variability on Arctic sea-ice trends"
+  journal: "Nature Clim. Change"
+  details: "5, 86"
+  year: 2015
+  doi: "10.1038/nclimate2483"
+
+- authors: "Swart, N.C., J.C. Fyfe, N.P. Gillett and G.J. Marshall"
+  title: "Comparing trends in the Southern Annular Mode and the surface westerly jet"
+  journal: "J. Clim."
+  details: "28, 8840–8859"
+  year: 2015
+
+- authors: "Swart, N.C. and Fyfe, J.C."
+  title: "Global climate model wind bias influences ocean carbon uptake and storage"
+  journal: "Nature Clim. Change"
+  details: "2, 47–52"
+  year: 2012
+  doi: "10.1038/NCLIMATE1289"
+
+- authors: "Swart, N.C. and Fyfe, J.C."
+  title: "Observed and simulated changes in the Southern Hemisphere surface westerly wind-stress"
+  journal: "Geophys. Res. Lett."
+  details: "39, L16711"
+  year: 2012
+  doi: "10.1029/2012GL052810"
+
+- authors: "Swart, N.C. and Weaver, A.J."
+  title: "The Alberta oil-sands and climate"
+  journal: "Nature Clim. Change"
+  details: "2, 134–136"
+  year: 2012
+  doi: "10.1038/nclimate1421"

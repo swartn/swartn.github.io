@@ -1,0 +1,52 @@
+# -------------------------------------------------------
+# About / Hero content
+# -------------------------------------------------------
+
+hero:
+  tagline: >
+    Examining global climate change and variability with Earth System Models
+    and observations — from the Southern Ocean to Arctic sea ice to the global
+    carbon cycle. Lead developer of Canada's Earth System Model (CanESM) and
+    its contributions to CMIP.
+
+intro:
+  - "I am a Research Scientist at the Canadian Centre for Climate Modelling and Analysis (CCCma), Environment and Climate Change Canada, based in Victoria, British Columbia."
+  - "I examine global climate change and variability using Earth System Models and observations. My particular areas of focus have been model development, evaluation and uncertainty, the Southern Ocean in the climate system, the role of the ocean in the global carbon cycle, sea-ice change and variability in both the Arctic and Antarctic, and climate stabilization."
+  - "I coordinate development of the Canadian Earth System Model (CanESM), and its application in the Coupled Model Intercomparison Project, providing experience in managing large teams and projects."
+
+positions:
+  - title: "Research Scientist (RES-04)"
+    org: "CCCma, Environment and Climate Change Canada"
+    years: "2013–present"
+  - title: "Adjunct Assistant Professor"
+    org: "School of Earth and Ocean Sciences, University of Victoria"
+    years: "2014–present"
+  - title: "Subject Editor for Climate"
+    org: "FACETS"
+    years: "2015–2024"
+
+education:
+  - degree: "Ph.D."
+    institution: "School of Earth and Ocean Sciences, University of Victoria"
+    year: 2013
+  - degree: "M.Sc. Oceanography"
+    institution: "University of Cape Town"
+    year: 2008
+  - degree: "B.Sc. (Hons) Physical Oceanography"
+    institution: "University of Cape Town"
+    year: 2005
+    note: "with Distinction"
+  - degree: "B.Sc."
+    institution: "University of Cape Town"
+    year: 2004
+    note: "with Distinction"
+
+recognition:
+  - "2023 Citation of Excellence for Innovation and Guiding Change — ECCC"
+  - "2019 Geoff Howell Citation of Excellence — ECCC"
+  - "CanESM5 referenced 73 times in IPCC Sixth Assessment Report (AR6)"
+
+training: >
+  As CanESM team lead, managing scientists and technical staff including work
+  planning and career development. Co-supervising graduate students and serving
+  on PhD committees at UVic.

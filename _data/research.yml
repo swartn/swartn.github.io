@@ -1,0 +1,67 @@
+# -------------------------------------------------------
+# Research Focus cards
+# icon: Font Awesome class (e.g. "fas fa-water"), or "co2" for the molecule SVG
+# papers: list of { label, doi } — doi only, no https://doi.org/ prefix
+# -------------------------------------------------------
+
+- icon: "fas fa-water"
+  title: "Southern Ocean & Sea Ice"
+  description: >
+    Investigating the physical drivers of Southern Ocean warming, sea ice
+    variability, and water mass transformation — including the role of wind
+    forcing, freshwater fluxes, and ozone depletion.
+  papers:
+    - label: "Swart et al. 2018"
+      doi: "10.1038/s41561-018-0226-1"
+    - label: "Swart & Fyfe 2013"
+      doi: "10.1002/grl.50820"
+    - label: "Chen et al. 2023"
+      doi: "10.1029/2023GL106492"
+    - label: "Liu et al. 2022"
+      doi: "10.1038/s41558-022-01320-w"
+
+- icon: "fas fa-wind"
+  title: "Ocean–Atmosphere Interactions"
+  description: >
+    Examining how changes in surface winds drive ocean circulation, heat uptake,
+    and exchanges of carbon between the atmosphere and ocean, and how these link
+    to observed climate trends.
+  papers:
+    - label: "Swart et al. 2015"
+      doi: "10.1175/JCLI-D-15-0334.1"
+    - label: "Swart & Fyfe 2012"
+      doi: "10.1029/2012GL052810"
+    - label: "Saenko et al. 2016"
+      doi: "10.1007/s00382-016-2988-1"
+
+- icon: "co2"
+  title: "Ocean Carbon Cycle"
+  description: >
+    Studying the role of the ocean in the global carbon cycle — how wind-driven
+    circulation, biological productivity, and model biases affect ocean carbon
+    uptake and storage.
+  papers:
+    - label: "Swart & Fyfe 2012"
+      doi: "10.1038/NCLIMATE1289"
+    - label: "Swart et al. 2014"
+      doi: "10.5194/bg-11-6107-2014"
+    - label: "Gooya et al. 2024"
+      doi: "10.1029/2023EF004204"
+    - label: "Duke et al. 2024"
+      doi: "10.1029/2024JC021134"
+    - label: "Duke et al. 2023"
+      doi: "10.5194/egusphere-2023-870"
+
+- icon: "fas fa-chart-line"
+  title: "Detection & Attribution"
+  description: >
+    Detecting anthropogenic climate signals and attributing observed changes to
+    specific forcing agents — including the role of internal variability in
+    masking or amplifying trends in sea ice and global temperature.
+  papers:
+    - label: "Swart et al. 2015"
+      doi: "10.1038/nclimate2483"
+    - label: "Fyfe et al. 2016"
+      doi: "10.1038/nclimate2938"
+    - label: "Fyfe et al. 2021"
+      doi: "10.1126/sciadv.abf7133"
